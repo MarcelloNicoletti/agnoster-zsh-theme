@@ -116,7 +116,11 @@ prompt_git() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment blue $PRIMARY_FG ' %~ '
+  if (( $+functions[prompt-pwd] )); then
+    prompt_segment blue $PRIMARY_FG " $(prompt-pwd) "
+  else
+    prompt_segment blue $PRIMARY_FG ' %2~ '
+  fi
 }
 
 # Status:
